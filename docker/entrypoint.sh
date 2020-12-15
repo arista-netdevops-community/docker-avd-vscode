@@ -41,16 +41,19 @@ cd /home/avd/
 # Start clone process if running in DEMO/ATD mode
 if [  "${AVD_MODE}" == "demo" ]; then
   echo "Running in demo/ATD mode"
-  echo "  * Getting repositories from Gthub"
-  curl https://get.avd.sh/ | sh
-else
-    # Support for custom extension in mounted volume
-    # Use local path to file
-    echo "AVD_USER_EXTENSIONS_FILE is set to ${AVD_USER_EXTENSIONS_FILE}"
-    if [ -f "${HOME}/${AVD_USER_EXTENSIONS_FILE}" ]; then
-        echo "Installing custom extension from ${AVD_USER_EXTENSIONS_FILE}"
-        while IFS= read -r line; do code-server --install-extension $line; done < ${HOME}/${AVD_USER_EXTENSIONS_FILE}
-    fi
+  echo "  * Getting repositories from Github"
+  curl -fsSL https://get.avd.sh/ | sh
+elif [ "${AVD_MODE}" == "toi" ]; then
+  echo "Running in TOI mode"
+  echo "  * Getting repositories from Github"
+  curl -fsSL https://get.avd.sh/toi/install.sh | sh
+fi
+
+# Support for custom extension in mounted volume
+# Use local path to file
+if [ -f "${HOME}/${AVD_USER_EXTENSIONS_FILE}" ]; then
+    echo "Installing custom extension from ${AVD_USER_EXTENSIONS_FILE}"
+    while IFS= read -r line; do code-server --install-extension $line; done < ${HOME}/${AVD_USER_EXTENSIONS_FILE}
 fi
 
 sh -c "code-server --bind-addr 0.0.0.0:8080 --auth=none"

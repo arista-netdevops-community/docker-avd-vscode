@@ -25,7 +25,8 @@ $ open http://127.0.0.1:8080
 
 ### Generic settings
 
-- __`AVD_MODE`__: If set to `demo`, container will install AVD content to test it from `get.avd.sh`
+- __`AVD_MODE`__: If set to `demo`, container will install AVD content to test it from `get.avd.sh`.
+    - Supported mode: `['demo', 'toi']`
 - __`AVD_USER_EXTENSIONS_FILE`__: Allow user to installed additional VScode extensions
 - __`AVD_GIT_USER`__: Username to configure in `.gitconfig` file
 - __`AVD_GIT_EMAIL`__: Email to configure in `.gitconfig` file

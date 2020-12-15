@@ -9,6 +9,7 @@ UID ?= 1000
 GID ?= 1000
 VSCODE_PORT ?= 8080
 LOCAL_AVD_PATH ?= $(HOME)/Projects/arista-ansible
+AVD_MODE ?= demo
 
 .PHONY: build
 build: ## Build docker image
@@ -25,7 +26,7 @@ vanilla: ## Run vanilla instance
 			$(DOCKER_NAME):$(FLAVOR)
 
 demo: ## Run vanilla instance
-	docker run --rm -it -d -e AVD_MODE=demo \
+	docker run --rm -it -d -e AVD_MODE=$(AVD_MODE) \
 			-v /var/run/docker.sock:/var/run/docker.sock \
 			-p $(VSCODE_PORT):8080 \
 			-v ~/.gitconfig:/home/avd/.gitconfig \

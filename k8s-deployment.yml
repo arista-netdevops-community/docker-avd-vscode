@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: avd-coder-deployment
+  labels:
+    name: avd-vscode
+    run: avd-coder
+    app: avd
+    version: '0.0.1'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: avd
+  template:
+    metadata:
+      labels:
+        app: avd
+        run: avd-coder
+        app: avd
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: avd-coder
+          image: avdteam/vscode:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: avd-coder-service
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 31081
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: avd
+    run: avd-coder

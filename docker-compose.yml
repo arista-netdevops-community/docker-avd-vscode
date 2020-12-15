@@ -1,0 +1,13 @@
+---
+version: "3.9"
+services:
+  avd-coder:
+    image: avdteam/vscode:latest
+    ports:
+      - 8080
+    volumes:
+      - ${PWD}:/home/avd/development
+    environment:
+      AVD_MODE: demo
+      AVD_GIT_USER: AVD
+      AVD_GIT_EMAIL: avd-demo@arista.com

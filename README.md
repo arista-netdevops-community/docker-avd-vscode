@@ -5,6 +5,8 @@
 
 This repository provides a Docker image running [cdr/code-server](https://github.com/cdr/code-server/) preconfigued with [Arista Validated Design](https://www.avd.sh) environment.
 
+__Docker image__: [avdteam/vscode](https://hub.docker.com/repository/docker/avdteam/vscode)
+
 <p align="center"><img src="medias/AVD%20-%20Docker%20Logo%20transparent%20bg.png" alt="Arista AVD Docker Image" width="400"/></p>
 
 ## Getting started
@@ -72,6 +74,53 @@ docker run --rm -it -d \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 8080:8080 \
     avdteam/vscode:latest
+```
+
+## Deployment Scenario
+
+### Docker Compose
+
+Easy to manage TOI and ATD with docker-compose command
+
+- [Docker Compose stack example](./docker-compose.yml)
+
+```bash
+# Start single node stack
+$ docker-compose up -d
+Creating network "avd-vscode_default" with the default driver
+Creating avd-vscode_avd-coder_1 ... done
+
+# get dynamic port mapping
+$ docker-compose ps
+         Name                 Command         State            Ports
+-----------------------------------------------------------------------------
+avd-vscode_avd-coder_1   /bin/entrypoint.sh   Up      0.0.0.0:55000->8080/tcp
+
+# Scale up environment
+$ docker-compose --scale avd-coder=3
+Creating avd-vscode_avd-coder_2 ... done
+Creating avd-vscode_avd-coder_3 ... done
+
+$ docker-compose ps
+         Name                 Command         State            Ports
+-----------------------------------------------------------------------------
+avd-vscode_avd-coder_1   /bin/entrypoint.sh   Up      0.0.0.0:55000->8080/tcp
+avd-vscode_avd-coder_2   /bin/entrypoint.sh   Up      0.0.0.0:55002->8080/tcp
+avd-vscode_avd-coder_3   /bin/entrypoint.sh   Up      0.0.0.0:55001->8080/tcp
+```
+
+### Kubernetes deployment
+
+- [Kubernetes deployment manifest](./k8s-deployment.yml)
+
+```yaml
+$ kubectl apply -f k8s-deployment.yml
+deployment.apps/avd-coder-deployment created
+service/avd-coder-service created
+
+$ kubectl get service
+NAME                TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+avd-coder-service   NodePort   10.152.183.196   <none>        8080:31081/TCP   5s
 ```
 
 ## License

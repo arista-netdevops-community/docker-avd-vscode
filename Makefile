@@ -18,31 +18,27 @@ clean:
 	docker ps -q | xargs docker rm -f
 
 vanilla: ## Run vanilla instance
-	docker run --rm -it -d -v $(CURRENT_DIR)/:/projects \
-			-v /var/run/docker.sock:/var/run/docker.sock \
+	docker run --rm -it -d -v /var/run/docker.sock:/var/run/docker.sock \
 			-p $(VSCODE_PORT):8080 \
 			-v ~/.gitconfig:/home/avd/.gitconfig \
 			$(DOCKER_NAME):$(FLAVOR)
 
 demo: ## Run vanilla instance
-	docker run --rm -it -d -v $(CURRENT_DIR)/:/projects \
-			-e AVD_MODE=demo \
+	docker run --rm -it -d -e AVD_MODE=demo \
 			-v /var/run/docker.sock:/var/run/docker.sock \
 			-p $(VSCODE_PORT):8080 \
 			-v ~/.gitconfig:/home/avd/.gitconfig \
 			$(DOCKER_NAME):$(FLAVOR)
 
 share-only: ## Run instance with AVD volume shared and user-extensions
-	docker run --rm -it -d -v $(CURRENT_DIR)/:/projects \
-			-v $(LOCAL_AVD_PATH):/home/avd/arista-ansible \
+	docker run --rm -it -d -v $(LOCAL_AVD_PATH):/home/avd/arista-ansible \
 			-v /var/run/docker.sock:/var/run/docker.sock \
 			-p $(VSCODE_PORT):8080 \
 			-v ~/.gitconfig:/home/avd/.gitconfig \
 			$(DOCKER_NAME):$(FLAVOR)
 
 share-with-extensions: ## Run instance with AVD volume shared and user-extensions
-	docker run --rm -it -d -v $(CURRENT_DIR)/:/projects \
-			-e AVD_USER_EXTENSIONS_FILE=my_settings/user-extensions.txt \
+	docker run --rm -it -d -e AVD_USER_EXTENSIONS_FILE=my_settings/user-extensions.txt \
 			-v $(CURRENT_DIR)/tests:/home/avd/my_settings \
 			-v $(LOCAL_AVD_PATH):/home/avd/arista-ansible \
 			-v /var/run/docker.sock:/var/run/docker.sock \

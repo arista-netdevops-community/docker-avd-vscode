@@ -33,6 +33,42 @@ These settings must be used to mount and edit file from your physical host.
 - __`AVD_UID`__: set uid for avd user in container.
 - __`AVD_GID`__: set gid for avd user in container.
 
+## Examples
+
+### Use container to run demo content
+
+```bash
+docker run --rm -it -d \
+    -e AVD_MODE=demo \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -p 8080:8080 \
+    -v ~/.gitconfig:/home/avd/.gitconfig \
+    avdteam/vscode:latest
+```
+
+### Use container to work on your local version
+
+```bash
+docker run --rm -it -d \
+    -v ${PWD}/your-local-work:/home/avd/arista-ansible \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -p 8080:8080 \
+    -v ~/.gitconfig:/home/avd/.gitconfig \
+    avdteam/vscode:latest
+```
+
+### Use container with your custom extensions list
+
+```bash
+docker run --rm -it -d \
+    -e AVD_USER_EXTENSIONS_FILE=my_settings/user-extensions.txt \
+    -v ${PATH_TO_FOLDER_WITH_EXT_FILE}/tests:/home/avd/my_settings \
+    -v ${PWD}/your-local-work:/home/avd/arista-ansible \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -p 8080:8080 \
+    -v ~/.gitconfig:/home/avd/.gitconfig \
+    avdteam/vscode:latest
+```
 
 ## License
 

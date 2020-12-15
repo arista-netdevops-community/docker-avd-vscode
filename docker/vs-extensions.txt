@@ -1,0 +1,4 @@
+eamodio.gitlens
+mhutchie.git-graph
+ms-python.python
+ms-toolsai.jupyter

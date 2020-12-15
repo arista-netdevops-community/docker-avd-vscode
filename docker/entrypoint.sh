@@ -25,7 +25,7 @@ if [ -n "${AVD_GIT_EMAIL}" ]; then
   echo "Update gitconfig with ${AVD_GIT_EMAIL}"
   sed -i "s/USER_EMAIL/${AVD_GIT_EMAIL}/g" ${HOME}/.gitconfig
 else
-  sed -i "s/USER_EMAIL/AVD Code email/g" ${HOME}/.gitconfig
+  sed -i "s/USER_EMAIL/avd-code@arista.com/g" ${HOME}/.gitconfig
 fi
 
 # Configure local docker socket permissions

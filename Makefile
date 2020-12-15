@@ -19,8 +19,9 @@ clean:
 
 vanilla: ## Run vanilla instance
 	docker run --rm -it -d -v /var/run/docker.sock:/var/run/docker.sock \
+			-e AVD_GIT_USER=titom73 \
+			-e AVD_GIT_EMAIL=tom@inetsix.net \
 			-p $(VSCODE_PORT):8080 \
-			-v ~/.gitconfig:/home/avd/.gitconfig \
 			$(DOCKER_NAME):$(FLAVOR)
 
 demo: ## Run vanilla instance

@@ -25,7 +25,8 @@ $ open http://127.0.0.1:8080
 
 - __`AVD_MODE`__: If set to `demo`, container will install AVD content to test it from `get.avd.sh`
 - __`AVD_USER_EXTENSIONS_FILE`__: Allow user to installed additional VScode extensions
-
+- __`AVD_GIT_USER`__: Username to configure in `.gitconfig` file
+- __`AVD_GIT_EMAIL`__: Email to configure in `.gitconfig` file
 ### User settings
 
 These settings must be used to mount and edit file from your physical host.
@@ -40,9 +41,10 @@ These settings must be used to mount and edit file from your physical host.
 ```bash
 docker run --rm -it -d \
     -e AVD_MODE=demo \
+    -e AVD_GIT_USER=titom73 \
+    -e AVD_GIT_EMAIL=tom@inetsix.net \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 8080:8080 \
-    -v ~/.gitconfig:/home/avd/.gitconfig \
     avdteam/vscode:latest
 ```
 
@@ -50,10 +52,11 @@ docker run --rm -it -d \
 
 ```bash
 docker run --rm -it -d \
+    -e AVD_GIT_USER=titom73 \
+    -e AVD_GIT_EMAIL=tom@inetsix.net \
     -v ${PWD}/your-local-work:/home/avd/arista-ansible \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 8080:8080 \
-    -v ~/.gitconfig:/home/avd/.gitconfig \
     avdteam/vscode:latest
 ```
 
@@ -62,11 +65,12 @@ docker run --rm -it -d \
 ```bash
 docker run --rm -it -d \
     -e AVD_USER_EXTENSIONS_FILE=my_settings/user-extensions.txt \
+    -e AVD_GIT_USER=titom73 \
+    -e AVD_GIT_EMAIL=tom@inetsix.net \
     -v ${PATH_TO_FOLDER_WITH_EXT_FILE}/tests:/home/avd/my_settings \
     -v ${PWD}/your-local-work:/home/avd/arista-ansible \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 8080:8080 \
-    -v ~/.gitconfig:/home/avd/.gitconfig \
     avdteam/vscode:latest
 ```
 

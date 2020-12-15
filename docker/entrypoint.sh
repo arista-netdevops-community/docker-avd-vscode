@@ -14,6 +14,20 @@ if [ ! -z "${AVD_GID}" ]; then
   groupmod -g ${AVD_GID} avd
 fi
 
+# Update gitconfig with username and email
+if [ -n "${AVD_GIT_USER}" ]; then
+  echo "Update gitconfig with ${AVD_GIT_USER}"
+  sed -i "s/USERNAME/${AVD_GIT_USER}/g" ${HOME}/.gitconfig
+else
+  sed -i "s/USERNAME/AVD Code USER/g" ${HOME}/.gitconfig
+fi
+if [ -n "${AVD_GIT_EMAIL}" ]; then
+  echo "Update gitconfig with ${AVD_GIT_EMAIL}"
+  sed -i "s/USER_EMAIL/${AVD_GIT_EMAIL}/g" ${HOME}/.gitconfig
+else
+  sed -i "s/USER_EMAIL/AVD Code email/g" ${HOME}/.gitconfig
+fi
+
 # Configure local docker socket permissions
 if [ -S ${DOCKER_SOCKET} ]; then
     sudo chmod 666 /var/run/docker.sock &>/dev/null

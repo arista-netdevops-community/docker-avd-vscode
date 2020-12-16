@@ -22,7 +22,7 @@
     # In Fork model
     forigin = fetch origin
     fupstream = fetch upstream
-    fetch-all = !sh -c 'for remote in $(git remote);do git fetch remote;done''
+    fetch-all = !sh -c 'for remote in $(git remote);do git fetch remote;done'
 
 [core]
     excludesfile = ~/.gitignore_global

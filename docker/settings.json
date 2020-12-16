@@ -29,10 +29,16 @@
         "--max-line-length=120",
         "--disable=E501,W0142,W0403,W0613,W0232,R0903,R0913,C0103,R0914,C0304,F0401,W0402,E1101,W0614,C0111,C0301"
     ],
+    "files.associations": {
+        "*.yml": "ansible-advanced"
+    },
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "gitlens.views.repositories.files.layout": "tree",
     "files.trimTrailingWhitespace": true,
     "files.autoSave": "onFocusChange",
-    "editor.renderWhitespace": "all"
+    "editor.renderWhitespace": "all",
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.iconTheme": "material-icon-theme",
+    "gitlens.showWelcomeOnInstall": false
 }

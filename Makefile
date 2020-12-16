@@ -27,9 +27,10 @@ vanilla: ## Run vanilla instance
 
 demo: ## Run vanilla instance
 	docker run --rm -it -d -e AVD_MODE=$(AVD_MODE) \
+			-e AVD_GIT_USER=titom73 \
+			-e AVD_GIT_EMAIL=tom@inetsix.net \
 			-v /var/run/docker.sock:/var/run/docker.sock \
 			-p $(VSCODE_PORT):8080 \
-			-v ~/.gitconfig:/home/avd/.gitconfig \
 			$(DOCKER_NAME):$(FLAVOR)
 
 share-only: ## Run instance with AVD volume shared and user-extensions

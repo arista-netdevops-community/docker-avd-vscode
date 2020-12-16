@@ -5,6 +5,13 @@
         80,
         120
     ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Path": "/root/.local/bin/flake8",
+    "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+    "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+    "python.linting.pylintPath": "/root/.local/bin/pylint",
+    "python.testing.pytestPath": "/root/.local/bin/pytest",
     "python.linting.pycodestyleEnabled": false,
     "python.linting.pycodestyleArgs": [
         "--max-line-length=120",

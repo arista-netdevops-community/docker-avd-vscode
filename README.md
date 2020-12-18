@@ -27,7 +27,7 @@ $ open http://127.0.0.1:8080
 
 - __`AVD_MODE`__: If set to `demo`, container will install AVD content to test it from `get.avd.sh`.
   - Supported mode: `['demo', 'toi']`
-- __`AVD_PASSWORD`__: Allow user to set a password to use for VScode authentcation. If not set, access is not protected by any password.
+- __`AVD_PASSWORD`__: Allow user to set a password to use for VScode authentication. If not set, access is not protected by any password.
 - __`AVD_GIT_USER`__: Username to configure in `.gitconfig` file.
   - Can be set with `AVD_GIT_USER=$(git config --get user.name)`
 - __`AVD_GIT_EMAIL`__: Email to configure in `.gitconfig` file.

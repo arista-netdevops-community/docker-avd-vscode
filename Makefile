@@ -1,7 +1,7 @@
 CURRENT_DIR = $(shell pwd)
 # Docker Information
 DOCKER_NAME ?= avdteam/vscode
-FLAVOR ?= latest
+FLAVOR ?= dev
 BRANCH ?= $(shell git symbolic-ref --short HEAD)
 # New Flavor creation
 TEMPLATE ?= _template
@@ -18,10 +18,19 @@ build: ## Build docker image
 clean:
 	docker ps -q | xargs docker rm -f
 
-vanilla: ## Run vanilla instance
-	docker run --rm -it -d -v /var/run/docker.sock:/var/run/docker.sock \
+vanilla-password: ## Run vanilla instance with password auth
+	docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock \
 			-e AVD_GIT_USER=titom73 \
 			-e AVD_GIT_EMAIL=tom@inetsix.net \
+			-e AVD_PASSWORD=interdata \
+			-p $(VSCODE_PORT):8080 \
+			$(DOCKER_NAME):$(FLAVOR)
+
+vanilla: ## Run vanilla instance
+	docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock \
+			-e AVD_GIT_USER=titom73 \
+			-e AVD_GIT_EMAIL=tom@inetsix.net \
+			-e AVD_PASSWORD= \
 			-p $(VSCODE_PORT):8080 \
 			$(DOCKER_NAME):$(FLAVOR)
 

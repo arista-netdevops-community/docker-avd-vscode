@@ -56,4 +56,8 @@ if [ -f "${HOME}/${AVD_USER_EXTENSIONS_FILE}" ]; then
     while IFS= read -r line; do code-server --install-extension $line; done < ${HOME}/${AVD_USER_EXTENSIONS_FILE}
 fi
 
-sh -c "code-server --bind-addr 0.0.0.0:8080 --auth=none"
+if [ -n "${AVD_PASSWORD}" ]; then
+    sh -c "PASSWORD=${AVD_PASSWORD} code-server --bind-addr 0.0.0.0:8080 --auth=password"
+else
+    sh -c "code-server --bind-addr 0.0.0.0:8080 --auth=none"
+fi

@@ -26,10 +26,14 @@ $ open http://127.0.0.1:8080
 ### Generic settings
 
 - __`AVD_MODE`__: If set to `demo`, container will install AVD content to test it from `get.avd.sh`.
-    - Supported mode: `['demo', 'toi']`
+  - Supported mode: `['demo', 'toi']`
+- __`AVD_PASSWORD`__: Allow user to set a password to use for VScode authentcation. If not set, access is not protected by any password.
+- __`AVD_GIT_USER`__: Username to configure in `.gitconfig` file.
+  - Can be set with `AVD_GIT_USER=$(git config --get user.name)`
+- __`AVD_GIT_EMAIL`__: Email to configure in `.gitconfig` file.
+  - Can be set with `AVD_GIT_EMAIL=$(git config --get user.email)`
 - __`AVD_USER_EXTENSIONS_FILE`__: Allow user to installed additional VScode extensions
-- __`AVD_GIT_USER`__: Username to configure in `.gitconfig` file
-- __`AVD_GIT_EMAIL`__: Email to configure in `.gitconfig` file
+
 ### User settings
 
 These settings must be used to mount and edit file from your physical host.

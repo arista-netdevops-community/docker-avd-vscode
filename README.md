@@ -124,6 +124,40 @@ NAME                TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          A
 avd-coder-service   NodePort   10.152.183.196   <none>        8080:31081/TCP   5s
 ```
 
+### Alias for shell rc file
+
+```bash
+# AVD VScode image name
+export AVD_VSCODE_IMAGE=avdteam/vscode
+
+# Version of AVD VScode image to use
+export AVD_VSCODE_VERSION=latest
+
+# Vscode container command line to start
+base_avd_vsc() {
+        container_id=$(docker run -P -it --rm -d \
+          -e AVD_GIT_USER="$(git config --get user.name)" \
+          -e AVD_GIT_EMAIL="$(git config --get user.email)" \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -v ${PWD}/:/home/avd/local_projects \
+          ${AVD_VSCODE_IMAGE}:${AVD_VSCODE_VERSION})
+        echo "Container ${container_id} has been created ..."
+        export mapped_port=$(docker inspect --format="{{(index (index .NetworkSettings.Ports \"8080/tcp\") 0).HostPort}}" ${container_id})
+        echo "-> Open http://127.0.0.1:${mapped_port}/?folder=/home/avd"
+}
+
+# Stop all VScode isntances
+avd-vsc-stop() {
+  docker ps -a | grep -e "${AVD_VSCODE_IMAGE}" | gawk '{print $1}' | xargs docker stop
+}
+
+# Alias to start a new instance from where you are in shell
+alias avd-vsc='base_avd_vsc'
+
+# Update image from docker-hub
+alias avd-vsc-update='docker pull ${AVD_VSCODE_IMAGE}:${AVD_VSCODE_VERSION}'
+```
+
 ## License
 
 Project is published under [Apache 2.0 License](./LICENSE)

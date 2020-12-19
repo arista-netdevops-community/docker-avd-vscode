@@ -64,3 +64,10 @@ share-with-git: ## Run instance with AVD volume shared and user-extensions
 			-v /var/run/docker.sock:/var/run/docker.sock \
 			-p $(VSCODE_PORT):8080 \
 			$(DOCKER_NAME):$(FLAVOR)
+
+share-with-script: ## Run instance with AVD volume shared and user-extensions
+	docker run --rm -it -d -e AVD_USER_SCRIPT=my_settings/user-script.sh \
+			-v $(CURRENT_DIR)/tests:/home/avd/my_settings \
+			-v /var/run/docker.sock:/var/run/docker.sock \
+			-p $(VSCODE_PORT):8080 \
+			$(DOCKER_NAME):$(FLAVOR)

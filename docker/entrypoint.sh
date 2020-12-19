@@ -55,6 +55,13 @@ if [ -f "${AVD_USER_REPOS}" ]; then
     while IFS= read -r line; do git clone $line; done < ${AVD_USER_REPOS}
 fi
 
+# Execute a user defined script to provision container with ${AVD_USER_SCRIPT}
+if [ -f "${AVD_USER_SCRIPT}" ]; then
+    echo "Runnin user script ${AVD_USER_SCRIPT}"
+    chmod +x "${AVD_USER_SCRIPT}"
+    sh -c "${AVD_USER_SCRIPT}"
+fi
+
 # Support for custom extension in mounted volume
 # Use local path to file
 if [ -f "${HOME}/${AVD_USER_EXTENSIONS_FILE}" ]; then

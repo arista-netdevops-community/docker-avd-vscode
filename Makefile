@@ -57,3 +57,10 @@ share-with-extensions: ## Run instance with AVD volume shared and user-extension
 			-p $(VSCODE_PORT):8080 \
 			-v ~/.gitconfig:/home/avd/.gitconfig \
 			$(DOCKER_NAME):$(FLAVOR)
+
+share-with-git: ## Run instance with AVD volume shared and user-extensions
+	docker run --rm -it -d -e AVD_USER_REPOS=my_settings/user-repos.txt \
+			-v $(CURRENT_DIR)/tests:/home/avd/my_settings \
+			-v /var/run/docker.sock:/var/run/docker.sock \
+			-p $(VSCODE_PORT):8080 \
+			$(DOCKER_NAME):$(FLAVOR)

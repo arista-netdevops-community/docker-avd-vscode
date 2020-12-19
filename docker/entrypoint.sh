@@ -36,7 +36,7 @@ fi
 export PATH=$PATH:/home/avd/.local/bin
 export LC_ALL=C.UTF-8
 
-cd /home/avd/
+cd ${HOME}
 
 # Start clone process if running in DEMO/ATD mode
 if [  "${AVD_MODE}" == "demo" ]; then
@@ -47,6 +47,12 @@ elif [ "${AVD_MODE}" == "toi" ]; then
   echo "Running in TOI mode"
   echo "  * Getting repositories from Github"
   curl -fsSL https://get.avd.sh/toi/install.sh | sh
+fi
+
+# Install user repositories from ${AVD_USER_REPOS}
+if [ -f "${AVD_USER_REPOS}" ]; then
+    echo "Cloning user repositories from ${AVD_USER_REPOS}"
+    while IFS= read -r line; do git clone $line; done < ${AVD_USER_REPOS}
 fi
 
 # Support for custom extension in mounted volume

@@ -33,6 +33,7 @@ $ open http://127.0.0.1:8080
 - __`AVD_GIT_EMAIL`__: Email to configure in `.gitconfig` file.
   - Can be set with `AVD_GIT_EMAIL=$(git config --get user.email)`
 - __`AVD_USER_EXTENSIONS_FILE`__: Allow user to installed additional VScode extensions
+- __`AVD_USER_REPOS`__: Path to a text file in your container with a list of repository to clone (1 repository per line)
 
 ### User settings
 

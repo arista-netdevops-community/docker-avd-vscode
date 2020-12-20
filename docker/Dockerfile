@@ -1,7 +1,7 @@
 FROM avdteam/base:3.6
 
 LABEL maintainer="Arista Ansible Team <ansible@arista.com>"
-LABEL com.example.version="0.0.2"
+LABEL com.example.version="0.0.3"
 LABEL vendor1="Arista"
 LABEL com.example.release-date="2020-12-16"
 LABEL com.example.version.is-production="False"

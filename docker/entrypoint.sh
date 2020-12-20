@@ -52,7 +52,7 @@ fi
 # Install user repositories from ${AVD_USER_REPOS}
 if [ -f "${AVD_USER_REPOS}" ]; then
     echo "Cloning user repositories from ${AVD_USER_REPOS}"
-    while IFS= read -r line; do git clone $line; done < ${AVD_USER_REPOS}
+    while IFS= read -r line; do echo "  * cloning ${line}" && git clone ${line}; done < ${AVD_USER_REPOS}
 fi
 
 # Execute a user defined script to provision container with ${AVD_USER_SCRIPT}
@@ -66,7 +66,7 @@ fi
 # Use local path to file
 if [ -f "${HOME}/${AVD_USER_EXTENSIONS_FILE}" ]; then
     echo "Installing custom extension from ${AVD_USER_EXTENSIONS_FILE}"
-    while IFS= read -r line; do code-server --install-extension $line; done < ${HOME}/${AVD_USER_EXTENSIONS_FILE}
+    while IFS= read -r line; do code-server --install-extension $line; done < ${AVD_USER_EXTENSIONS_FILE}
 fi
 
 if [ -n "${AVD_PASSWORD}" ]; then

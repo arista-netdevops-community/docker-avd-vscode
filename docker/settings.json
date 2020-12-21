@@ -1,5 +1,5 @@
 {
-    "terminal.integrated.automationShell.linux": "/usr/bin/zsh",
+    "terminal.integrated.automationShell.linux": "/bin/zsh",
     "terminal.integrated.shell.linux": "/bin/zsh",
     "editor.rulers": [
         80,
@@ -10,8 +10,8 @@
     "python.linting.flake8Path": "/root/.local/bin/flake8",
     "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
     "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-    "python.linting.pylintPath": "/root/.local/bin/pylint",
-    "python.testing.pytestPath": "/root/.local/bin/pytest",
+    "python.linting.pylintPath": "/home/avd/.local/bin/pylint",
+    "python.testing.pytestPath": "/home/avd/.local/bin/pytest",
     "python.linting.pycodestyleEnabled": false,
     "python.linting.pycodestyleArgs": [
         "--max-line-length=120",
@@ -32,13 +32,19 @@
     "files.associations": {
         "*.yml": "ansible-advanced"
     },
-    "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "gitlens.views.repositories.files.layout": "tree",
     "files.trimTrailingWhitespace": true,
     "files.autoSave": "onFocusChange",
     "editor.renderWhitespace": "all",
-    "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
-    "gitlens.showWelcomeOnInstall": false
+    "gitlens.showWelcomeOnInstall": false,
+    "editor.wordWrap": "on",
+    "terminal.integrated.cursorStyle": "line",
+    "window.autoDetectColorScheme": true,
+    "editor.formatOnPaste": true,
+    "files.enableTrash": false,
+    "workbench.colorTheme": "Slack Theme Aubergine - NEW COLOR",
+    "workbench.preferredDarkColorTheme": "Gruvbox Dark Medium",
+    "workbench.preferredLightColorTheme": "Slack Theme Aubergine - NEW COLOR"
 }

@@ -43,6 +43,22 @@ These settings must be used to mount and edit file from your physical host.
 - __`AVD_UID`__: set uid for avd user in container.
 - __`AVD_GID`__: set gid for avd user in container.
 
+### Docker in Docker
+
+Current container has docker installed and can be used in a Docker-in-Docker approach. To run docker, you must share your docker socket with container:
+
+__Docker Socket on Linux / Macos__
+
+```shell
+-v /var/run/docker.sock:/var/run/docker.sock
+```
+
+__Docker Socket on Windows__
+
+```shell
+-v //var/run/docker.sock:/var/run/docker.sock
+```
+
 ## Examples
 
 ### Use container to run demo content

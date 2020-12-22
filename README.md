@@ -33,6 +33,8 @@ $ open http://127.0.0.1:8080
 - __`AVD_GIT_EMAIL`__: Email to configure in `.gitconfig` file.
   - Can be set with `AVD_GIT_EMAIL=$(git config --get user.email)`
 - __`AVD_USER_EXTENSIONS_FILE`__: Allow user to installed additional VScode extensions
+- __`AVD_USER_REPOS`__: Path to a text file in your container with a list of repository to clone (1 repository per line)
+- __`AVD_USER_SCRIPT`__: Path to a shell script to execute during entrypoint execution.
 
 ### User settings
 
@@ -40,6 +42,22 @@ These settings must be used to mount and edit file from your physical host.
 
 - __`AVD_UID`__: set uid for avd user in container.
 - __`AVD_GID`__: set gid for avd user in container.
+
+### Docker in Docker
+
+Current container has docker installed and can be used in a Docker-in-Docker approach. To run docker, you must share your docker socket with container:
+
+__Docker Socket on Linux / Macos__
+
+```shell
+-v /var/run/docker.sock:/var/run/docker.sock
+```
+
+__Docker Socket on Windows__
+
+```shell
+-v //var/run/docker.sock:/var/run/docker.sock
+```
 
 ## Examples
 

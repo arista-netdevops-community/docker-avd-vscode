@@ -36,7 +36,7 @@ fi
 export PATH=$PATH:/home/avd/.local/bin
 export LC_ALL=C.UTF-8
 
-cd /home/avd/
+cd ${HOME}
 
 # Start clone process if running in DEMO/ATD mode
 if [  "${AVD_MODE}" == "demo" ]; then
@@ -49,11 +49,24 @@ elif [ "${AVD_MODE}" == "toi" ]; then
   curl -fsSL https://get.avd.sh/toi/install.sh | sh
 fi
 
+# Install user repositories from ${AVD_USER_REPOS}
+if [ -f "${AVD_USER_REPOS}" ]; then
+    echo "Cloning user repositories from ${AVD_USER_REPOS}"
+    while IFS= read -r line; do echo "  * cloning ${line}" && git clone ${line}; done < ${AVD_USER_REPOS}
+fi
+
+# Execute a user defined script to provision container with ${AVD_USER_SCRIPT}
+if [ -f "${AVD_USER_SCRIPT}" ]; then
+    echo "Runnin user script ${AVD_USER_SCRIPT}"
+    chmod +x "${AVD_USER_SCRIPT}"
+    sh -c "${AVD_USER_SCRIPT}"
+fi
+
 # Support for custom extension in mounted volume
 # Use local path to file
 if [ -f "${HOME}/${AVD_USER_EXTENSIONS_FILE}" ]; then
     echo "Installing custom extension from ${AVD_USER_EXTENSIONS_FILE}"
-    while IFS= read -r line; do code-server --install-extension $line; done < ${HOME}/${AVD_USER_EXTENSIONS_FILE}
+    while IFS= read -r line; do code-server --install-extension $line; done < ${AVD_USER_EXTENSIONS_FILE}
 fi
 
 if [ -n "${AVD_PASSWORD}" ]; then

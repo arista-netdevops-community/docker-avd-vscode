@@ -1,0 +1,2 @@
+https://github.com/aristanetworks/ansible-avd.git
+https://github.com/aristanetworks/ansible-cvp.git
